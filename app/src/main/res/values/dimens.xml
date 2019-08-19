@@ -1,4 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="view_margin">8dp</dimen>
+    <dimen name="cat_cell_imagewidth">120dp</dimen>
+    <dimen name="cat_cell_image_width_padding">132dp</dimen>
 </resources>

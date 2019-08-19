@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="workmeter.orange.ebin.com.dogapp">
+    package="ebinjoy999.app">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name="workmeter.orange.ebin.com.dogapp.appication.DogApp"
+        android:name="ebinjoy999.app.appication.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name="workmeter.orange.ebin.com.dogapp.screens.home.HomeActivity">
+
+
+        <activity android:name="ebinjoy999.app.screens.home.view.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="workmeter.orange.ebin.com.dogapp.screens.login.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+
+
     </application>
 
 </manifest>
