@@ -31,13 +31,13 @@ class App : Application() {
       Timber.plant(Timber.DebugTree())
          appComponent = DaggerAppComponent.builder()
                 .contextModule(ContextModule(this))   //have constructor, Dagger don't know how initialize so we need to specify
-//                .orangeServiceModule(DogAPIServiceModule())
+//                .orangeServiceModule(CatAPIServiceModule())
 //                .networkModule(NetworkModule())
 //                .picassoModule(PicassoModule())
 //                .persistentStorageModule(PersistentStorageModule())
                 //not needed modules, unless a constructor there....Dagger will create for you
                 .build()
-        retrofit = appComponent.getRetrofitService() //each time call, returns differ object; so scope
+//        retrofit = appComponent.getRetrofitService() //each time call, returns differ object; so scope
         picasso = appComponent.getPicasso()
 
         sharedPreferences = appComponent.getSharedPref()

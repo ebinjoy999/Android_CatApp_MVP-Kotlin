@@ -4,46 +4,46 @@ import android.database.sqlite.SQLiteDatabase
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteOpenHelper
-import ebinjoy999.app.screens.login.model.Workmeter
+import ebinjoy999.app.screens.home.model.CatBreed
 
 
 /**
  * Created by ebinjoy999 on 04/06/19.
  */
 class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-    val getItems: List<Workmeter>
+    val getItems: List<CatBreed>
         get() {
-            val entriesWorkmeter = ArrayList<Workmeter>()
+            val entriesCatBreed = ArrayList<CatBreed>()
             val selectQuery = "SELECT  * FROM $TABLE_ITEM_ENTRIES"
 
             val db = this.writableDatabase
             val cursor = db.rawQuery(selectQuery, null)
             if (cursor.moveToFirst()) {
-                do {
-                    val entry = Workmeter(
-                            cursor.getString(0),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
-                            cursor.getString(4),
-                            cursor.getString(5),
-                            cursor.getString(6),
-                            cursor.getString(7),
-                            cursor.getString(8),
-                            cursor.getString(9),
-                            cursor.getString(10),
-                            cursor.getString(11),
-                            cursor.getString(12),
-                            cursor.getString(13),
-                            cursor.getString(14),
-                            cursor.getString(15),
-                            cursor.getString(16))
+//                do {
+//                    val entry = CatBreed(
+//                            cursor.getString(0),
+//                            cursor.getString(1),
+//                            cursor.getString(2),
+//                            cursor.getString(3),
+//                            cursor.getString(4),
+//                            cursor.getString(5),
+//                            cursor.getString(6),
+//                            cursor.getString(7),
+//                            cursor.getString(8),
+//                            cursor.getString(9),
+//                            cursor.getString(10),
+//                            cursor.getString(11),
+//                            cursor.getString(12),
+//                            cursor.getString(13),
+//                            cursor.getString(14),
+//                            cursor.getString(15),
+//                            cursor.getString(16))
 
-                    entriesWorkmeter.add(entry)
-                } while (cursor.moveToNext())
+//                    entriesCatBreed.add(entry)
+
+//                } while (cursor.moveToNext())
             }
-            return entriesWorkmeter
+            return entriesCatBreed
         }
 
 
@@ -100,34 +100,34 @@ class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
      * All CRUD(Create, Read, Update, Delete) Operations
      */
 
-    fun addWorkMeterEntry(workmeter: Workmeter) {
+    fun addCatBreedEntry(CatBreed: CatBreed) {
         val db = this.writableDatabase
 
         //Content values use KEY-VALUE pair concept
         val values = ContentValues()
-        values.put(KEY_emp_key, workmeter.empKey)
-        values.put(KEY_emp_name, workmeter.empName)
-        values.put(KEY_work_hour, workmeter.workHour)
-        values.put(KEY_work_minute, workmeter.workMinute)
-        values.put(KEY_week_hour, workmeter.weekHour)
-        values.put(KEY_week_minute_, workmeter.weekMinute)
-        values.put(KEY_w1, workmeter.w1)
-        values.put(KEY_w2, workmeter.w2)
-        values.put(KEY_w3, workmeter.w3)
-        values.put(KEY_w4, workmeter.w4)
-        values.put(KEY_cl, workmeter.cl)
-        values.put(KEY_el, workmeter.el)
-        values.put(KEY_ml, workmeter.ml)
-        values.put(KEY_mgr_pending, workmeter.mgrPending)
-        values.put(KEY_you_pending, workmeter.youPending)
-        values.put(KEY_updated_at, workmeter.updatedAt)
-        values.put(KEY_leave_status, workmeter.leaveStatus)
+//        values.put(KEY_emp_key, CatBreed.empKey)
+//        values.put(KEY_emp_name, CatBreed.empName)
+//        values.put(KEY_work_hour, CatBreed.workHour)
+//        values.put(KEY_work_minute, CatBreed.workMinute)
+//        values.put(KEY_week_hour, CatBreed.weekHour)
+//        values.put(KEY_week_minute_, CatBreed.weekMinute)
+//        values.put(KEY_w1, CatBreed.w1)
+//        values.put(KEY_w2, CatBreed.w2)
+//        values.put(KEY_w3, CatBreed.w3)
+//        values.put(KEY_w4, CatBreed.w4)
+//        values.put(KEY_cl, CatBreed.cl)
+//        values.put(KEY_el, CatBreed.el)
+//        values.put(KEY_ml, CatBreed.ml)
+//        values.put(KEY_mgr_pending, CatBreed.mgrPending)
+//        values.put(KEY_you_pending, CatBreed.youPending)
+//        values.put(KEY_updated_at, CatBreed.updatedAt)
+//        values.put(KEY_leave_status, CatBreed.leaveStatus)
         db.insert(TABLE_ITEM_ENTRIES, null, values)
         db.close()
     }
 
     // Getting single student details through ID
-    fun getLastEntry(): Workmeter {
+    fun getLastEntry(): CatBreed {
 
         val db = this.readableDatabase
 
@@ -157,28 +157,29 @@ class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         cursor?.moveToLast()
 
 //Return Student
-        return Workmeter(
-                cursor.getString(0),
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getString(4),
-                cursor.getString(5),
-                cursor.getString(6),
-                cursor.getString(7),
-                cursor.getString(8),
-                cursor.getString(9),
-                cursor.getString(10),
-                cursor.getString(11),
-                cursor.getString(12),
-                cursor.getString(13),
-                cursor.getString(14),
-                cursor.getString(15),
-                cursor.getString(16))
+        return CatBreed(
+//                cursor.getString(0),
+//                cursor.getString(1),
+//                cursor.getString(2),
+//                cursor.getString(3),
+//                cursor.getString(4),
+//                cursor.getString(5),
+//                cursor.getString(6),
+//                cursor.getString(7),
+//                cursor.getString(8),
+//                cursor.getString(9),
+//                cursor.getString(10),
+//                cursor.getString(11),
+//                cursor.getString(12),
+//                cursor.getString(13),
+//                cursor.getString(14),
+//                cursor.getString(15),
+//                cursor.getString(16)
+ )
     }
 
     // Updating single student
-    fun asa(workmeter: Workmeter) {
+    fun asa(CatBreed: CatBreed) {
 //        val db = this.writableDatabase
 //
 //        val values = ContentValues()
@@ -193,7 +194,7 @@ class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
     }
 
     // Deleting single student
-    fun deleteStudent(workmeter: Workmeter) {
+    fun deleteStudent(CatBreed: CatBreed) {
 
 //        val db = this.writableDatabase
 //        db.delete(TABLE_ITEM_ENTRIES, "$KEY_STUDENT_ID = ?",
@@ -212,7 +213,7 @@ class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
         //You will declare all your table names here.
         private val TABLE_ITEM_ENTRIES = "itementries";
 
-        //var a :String = Workmeter::class.java.declaredFields.forEach { a in String: Field -> a.name }
+        //var a :String = CatBreed::class.java.declaredFields.forEach { a in String: Field -> a.name }
 
         // Students Table Columns names
         private val KEY_emp_key = "emp_key"

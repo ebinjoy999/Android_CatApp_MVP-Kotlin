@@ -1,9 +1,9 @@
-package ebinjoy999.app.screens.home
+package ebinjoy999.app.screens.home.component
 
 import dagger.Component
 import ebinjoy999.app.di.components.AppComponent
+import ebinjoy999.app.screens.home.HomeActivityModule
 import ebinjoy999.app.screens.home.view.HomeActivity
-import ebinjoy999.app.screens.home.module.HomeActivityModule
 import ebinjoy999.app.screens.home.scope.HomeActivityScope
 
 

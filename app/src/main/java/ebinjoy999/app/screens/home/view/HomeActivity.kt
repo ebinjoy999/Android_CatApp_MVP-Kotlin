@@ -7,21 +7,20 @@ import android.support.v7.widget.RecyclerView
 import ebinjoy999.app.R
 import ebinjoy999.app.appication.App
 import ebinjoy999.app.database.DBHandler
-import ebinjoy999.app.screens.home.HomeActivityComponent
-import ebinjoy999.app.screens.home.module.HomeActivityModule
+import ebinjoy999.app.screens.home.component.HomeActivityComponent
+import ebinjoy999.app.screens.home.HomeActivityModule
 import javax.inject.Inject
-import ebinjoy999.app.di.qualifiers.CatApiServiceQualifier
 import ebinjoy999.app.screens.home.model.CatBreed
-import ebinjoy999.app.screens.home.service.CatListService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import android.support.v7.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
+import ebinjoy999.app.api.ApiHelper
 import ebinjoy999.app.base.EndlessRecyclerViewScrollListener
-import ebinjoy999.app.screens.home.DaggerHomeActivityComponent
 import ebinjoy999.app.screens.home.adapter.CarListAdapter
+import ebinjoy999.app.screens.home.component.DaggerHomeActivityComponent
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -29,10 +28,7 @@ class HomeActivity : AppCompatActivity(){
     @Inject lateinit var sharedPreferences: SharedPreferences
     @Inject lateinit var dbHandler: DBHandler
     @Inject lateinit var picasso: Picasso
-
-    @Inject
-    @field:CatApiServiceQualifier
-    lateinit var retrofitService: Retrofit
+    @Inject lateinit var mApiHelper: ApiHelper
 
 
 
@@ -48,8 +44,7 @@ class HomeActivity : AppCompatActivity(){
     }
 
     private fun loadCatList(page :Int) {
-        val service = retrofitService.create(CatListService::class.java)
-        var call : Call<ArrayList<CatBreed>> = service.getCatListWithImages(page =  page)
+        var call : Call<ArrayList<CatBreed>> = mApiHelper.getCatListWithImages(page =  page)
         call.enqueue(object : Callback<ArrayList<CatBreed>> {
             override fun onResponse(call: Call<ArrayList<CatBreed>>?, response: Response<ArrayList<CatBreed>>?) {
                 if(page==1)response?.body()?.let { setUpRV(it) }

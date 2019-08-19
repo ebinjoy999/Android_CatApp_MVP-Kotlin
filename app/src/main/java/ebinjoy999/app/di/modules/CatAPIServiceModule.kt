@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ebinjoy999.app.R
+import ebinjoy999.app.api.ApiHelper
 import ebinjoy999.app.di.qualifiers.CatApiServiceQualifier
 import ebinjoy999.app.di.scope.ApplicationScope
 
@@ -16,7 +17,7 @@ import ebinjoy999.app.di.scope.ApplicationScope
  */
 
 @Module(includes = arrayOf(NetworkModule::class, ContextModule::class))
-class DogAPIServiceModule {
+class CatAPIServiceModule {
 
     @Provides
     @ApplicationScope
@@ -27,5 +28,12 @@ class DogAPIServiceModule {
                 .client(okHttpClient)
                 .baseUrl(c.getString(R.string.base_url))
                 .build()
+    }
+
+    @Provides
+    @ApplicationScope
+     fun provideApiService( @CatApiServiceQualifier retrofit: Retrofit): ApiHelper {
+//         retrofit.create<ApiHelper>(ApiHelper::class.java)
+        return retrofit.create(ApiHelper::class.java)
     }
 }

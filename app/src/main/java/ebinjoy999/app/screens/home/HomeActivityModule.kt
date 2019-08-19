@@ -1,4 +1,4 @@
-package ebinjoy999.app.screens.home.module
+package ebinjoy999.app.screens.home
 
 import com.squareup.picasso.Picasso
 import dagger.Module
