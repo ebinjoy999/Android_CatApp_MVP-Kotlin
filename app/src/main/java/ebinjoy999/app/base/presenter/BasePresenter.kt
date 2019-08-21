@@ -11,14 +11,16 @@ import io.reactivex.schedulers.Schedulers
  * Created by macadmin on 8/19/19.
  */
 
-class BasePresenter<V : BaseView> : MVPPresenter<V> {
+open class BasePresenter<V : BaseView> : MVPPresenter<V> {
 
     override lateinit var view: V
-        protected set
-
 
     override fun onAttachView(view: V) {
         this.view = view
+    }
+
+    fun getView1(): V {
+        return view
     }
 
 

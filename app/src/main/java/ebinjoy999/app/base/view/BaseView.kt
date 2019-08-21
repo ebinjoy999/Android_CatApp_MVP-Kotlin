@@ -5,7 +5,6 @@ package ebinjoy999.app.base.view
  */
 
 interface BaseView {
-
     fun onShowProgress()
     fun showAlert(message: String)
     fun onHideProgress()
