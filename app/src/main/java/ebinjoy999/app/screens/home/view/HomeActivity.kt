@@ -1,9 +1,7 @@
 package ebinjoy999.app.screens.home.view
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import ebinjoy999.app.R
@@ -13,16 +11,11 @@ import ebinjoy999.app.screens.home.component.HomeActivityComponent
 import ebinjoy999.app.screens.home.HomeActivityModule
 import javax.inject.Inject
 import ebinjoy999.app.screens.home.model.CatBreed
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 import android.support.v7.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
-import ebinjoy999.app.api.ApiHelper
 import ebinjoy999.app.base.EndlessRecyclerViewScrollListener
 import ebinjoy999.app.base.view.BaseActivity
-import ebinjoy999.app.screens.home.adapter.CarListAdapter
+import ebinjoy999.app.screens.home.view.adapter.CarListAdapter
 import ebinjoy999.app.screens.home.component.DaggerHomeActivityComponent
 import ebinjoy999.app.screens.home.presenter.HomeActivityPresenter
 import kotlinx.android.synthetic.main.activity_home.*
@@ -31,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : BaseActivity(), HomeActivityView{
     override val contentView: Int
         get() = R.layout.activity_home //To change initializer of created properties use File | Settings | File Templates.
+    val linearLayoutManager = LinearLayoutManager(this)
+    var adapter : CarListAdapter? = null
     @Inject lateinit var sharedPreferences: SharedPreferences
     @Inject lateinit var dbHandler: DBHandler
     @Inject lateinit var picasso: Picasso
@@ -47,8 +42,6 @@ class HomeActivity : BaseActivity(), HomeActivityView{
         homeActivityPresenter.loadCatList(1)
     }
 
-    val linearLayoutManager = LinearLayoutManager(this)
-     var adapter : CarListAdapter? = null
 
     override fun onCatListResponse(list: ArrayList<CatBreed>) {
         if ( adapter == null ){
