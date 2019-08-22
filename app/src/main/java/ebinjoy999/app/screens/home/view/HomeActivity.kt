@@ -18,6 +18,7 @@ import ebinjoy999.app.base.view.BaseActivity
 import ebinjoy999.app.screens.home.view.adapter.CarListAdapter
 import ebinjoy999.app.screens.home.component.DaggerHomeActivityComponent
 import ebinjoy999.app.screens.home.presenter.HomeActivityPresenter
+import ebinjoy999.app.screens.home.presenter.HomeActivityPresenterImpl
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -29,15 +30,19 @@ class HomeActivity : BaseActivity(), HomeActivityView{
     @Inject lateinit var sharedPreferences: SharedPreferences
     @Inject lateinit var dbHandler: DBHandler
     @Inject lateinit var picasso: Picasso
-    @Inject lateinit var homeActivityPresenter: HomeActivityPresenter<HomeActivityView>
+    @Inject lateinit var homeActivityPresenter: HomeActivityPresenterImpl<HomeActivityView>
 
     override fun onViewReady(savedInstanceState: Bundle?, intent: Intent) {
         super.onViewReady(savedInstanceState, intent)
+
+
         var homeActivityComponent: HomeActivityComponent = DaggerHomeActivityComponent.builder()
                 .homeActivityModule(HomeActivityModule(this))
                 .appComponent(App.get(this).appComponent) //dependencies = arrayOf(AppComponent
                 .build()
         homeActivityComponent.inject(this)
+        homeActivityComponent.inject(homeActivityPresenter)
+
         homeActivityPresenter.onAttachView(this)
         homeActivityPresenter.loadCatList(1)
     }

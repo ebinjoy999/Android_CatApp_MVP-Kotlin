@@ -1,28 +1,34 @@
 package ebinjoy999.app.screens.home.presenter
 
 import ebinjoy999.app.api.ApiHelper
+import ebinjoy999.app.appication.App
 import ebinjoy999.app.base.presenter.BasePresenter
-import ebinjoy999.app.screens.home.model.CatBreed
+import ebinjoy999.app.screens.home.component.DaggerHomeActivityComponent
 import ebinjoy999.app.screens.home.view.HomeActivityView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by macadmin on 8/21/19.
  */
-class HomeActivityPresenterImpl<V : HomeActivityView>(private var mApiHelper: ApiHelper) : BasePresenter<V>(), HomeActivityPresenter<V>{
+class HomeActivityPresenterImpl<V :HomeActivityView> : BasePresenter<V>(), HomeActivityPresenter<V>{
 
+    @Inject
+    lateinit var mCompositeDisposable: CompositeDisposable
+    @Inject
+    lateinit var mApiHelper: ApiHelper
 
     override fun loadCatList(page :Int){
-        var call : Call<ArrayList<CatBreed>> = mApiHelper.getCatListWithImages(page =  page)
-        call.enqueue(object : Callback<ArrayList<CatBreed>> {
-            override fun onResponse(call: Call<ArrayList<CatBreed>>?, response: Response<ArrayList<CatBreed>>?) {
-                response?.body()?.let { getView1().onCatListResponse( it )}
-            }
-            override fun onFailure(call: Call<ArrayList<CatBreed>>?, t: Throwable?) {
-            }
-        })
+        mCompositeDisposable.add(mApiHelper.getCatListWithImages(page =  page).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe({ breeds -> getView1().onCatListResponse( breeds )
+        }, { error ->  }))
+    }
+
+    override fun onAttachView(view: V) {
+        super.onAttachView(view)
+
     }
 
 }

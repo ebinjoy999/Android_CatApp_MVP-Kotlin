@@ -2,6 +2,7 @@ package ebinjoy999.app.di.modules
 
 import android.content.Context
 import com.google.gson.Gson
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -25,6 +26,7 @@ class CatAPIServiceModule {
     fun retrofit(okHttpClient: OkHttpClient, gson: Gson, c: Context): Retrofit {
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .baseUrl(c.getString(R.string.base_url))
                 .build()
